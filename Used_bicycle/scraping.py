@@ -16,7 +16,8 @@ driver = webdriver.Chrome('/Users/maengbook/Desktop/driver/chromedriver')
 driver.maximize_window()
 driver.implicitly_wait(10)
 
-url = 'https://wrightbrothers.kr/shop/bicycles/bicycles/?filter=%5B%22categoryTypes_%EB%A1%9C%EB%93%9C%EC%9E%90%EC%A0%84%EA%B1%B0_%EB%A1%9C%EB%93%9C%22%2C%22productStatus_P02_%EC%A4%91%EA%B3%A0%22%5D'
+# url = 'https://wrightbrothers.kr/shop/bicycles/bicycles/?filter=%5B%22categoryTypes_%EB%A1%9C%EB%93%9C%EC%9E%90%EC%A0%84%EA%B1%B0_%EB%A1%9C%EB%93%9C%22%2C%22productStatus_P02_%EC%A4%91%EA%B3%A0%22%5D'
+url = 'https://wrightbrothers.kr/shop/bicycles/bicycles/?filter=%5B%22categoryTypes_%EB%A1%9C%EB%93%9C%EC%9E%90%EC%A0%84%EA%B1%B0_%EB%A1%9C%EB%93%9C%22,%22productStatus_P03_%EB%9D%BC%EB%B8%8C%EC%9D%B8%EC%A6%9D%22%5D'
 
 driver.get(url)
 home = driver.page_source
@@ -36,7 +37,7 @@ while True:
         break
     prev_height = curr_height
 
-data = []
+datas = []
 for i in range(2,last_number+2):
     try:
         driver.find_element_by_xpath(f"//*[@id='body-content']/div[2]/section/div/div/div/div[2]/div/div/div/div/div[2]/div/div[{i}]/div/div/a").click()
@@ -51,25 +52,18 @@ for i in range(2,last_number+2):
         keys_list.extend(['브랜드', '가격'])
         values_list = []
         values_list.extend([brand, price])
-        for key,value in zip(keys,values):
+        for key,value in zip(keys[:10],values[:10]):
             keys_list.append(key.text.strip())
             values_list.append(value.text.strip())
         bike = {k:v for k,v in zip(keys_list, values_list)}
-        data.append(bike)
+        datas.append(bike)
         driver.back()
-        # while True:
-        #         driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-        #         driver.implicitly_wait(30)
-        #         curr_height = driver.execute_script("return document.body.scrollHeight")
-        #         if curr_height == prev_height:
-        #             break
-        #         prev_height = curr_height
         elem = WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.XPATH, f"//*[@id='body-content']/div[2]/section/div/div/div/div[2]/div/div/div/div/div[2]/div/div[{i+1}]/div/div/a")))
     except:
         pass
 
 driver.quit()
-print(len(data))
+print(len(datas))
 
-with open('data_2.pkl', 'wb') as pickle_file:
-    pickle.dump(data, pickle_file)
+with open('data_5.pkl', 'wb') as pickle_file:
+    pickle.dump(datas, pickle_file)
