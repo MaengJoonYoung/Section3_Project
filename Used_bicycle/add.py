@@ -32,7 +32,7 @@ def add_data(data):
         except:
             pass
 
-add_data('data_2.pkl')
+# add_data('data_2.pkl')
 
 conn.commit()
 conn.close()

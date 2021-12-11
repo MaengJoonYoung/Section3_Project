@@ -8,11 +8,11 @@ from sklearn.model_selection import RandomizedSearchCV
 from sklearn.pipeline import make_pipeline
 
 if __name__ == '__main__':
-    df = pd.read_csv('bicycle.csv')
+    df = pd.read_csv('/Users/maengbook/Desktop/Project_3/bicycle.csv')
 
     df.drop(columns = 'Unnamed: 0', inplace=True)
 
-    target = '가격'
+    target = 'price'
     feature = df.drop(columns = target).columns
 
     X = df[feature]
@@ -47,5 +47,5 @@ if __name__ == '__main__':
     print(xgb.best_score_)
     model = xgb.best_estimator_
 
-    with open('model_2.pkl', 'wb') as pickle_file:
+    with open('model.pkl', 'wb') as pickle_file:
         pickle.dump(model, pickle_file)

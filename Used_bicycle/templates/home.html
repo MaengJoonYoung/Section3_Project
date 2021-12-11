@@ -1,0 +1,33 @@
+<html>
+    <body>
+        <select name = 'brand' class="form-select" aria-label="Default select example">
+            <option selected>브랜드를 선택해주세요.</option>
+            {% for brand in brand_list %}
+            <option value='{{brand}}'>{{brand}}</option>
+            {% endfor %}
+        </select><br><br>
+        <select name = 'old' class="form-select" aria-label="Default select example">
+            <option selected>연식을 선택해주세요.</option>
+            {% for year in range(2010,2022) %}
+            <option value='{{year}}'>{{year}}</option>
+            {% endfor %}
+        </select><br><br>
+        <select name = 'brake' class="form-select" aria-label="Default select example">
+            <option selected>브레이크를 선택해주세요.</option>
+            <option value = '림 브레이크'>림 브레이크</option>
+            <option value = '디스크 브레이크'>디스크 브레이크</option>
+        </select><br><br>
+        <select name = 'drivetrain' class="form-select" aria-label="Default select example">
+            <option selected>구동계를 선택해주세요.</option>
+            {% for drivetrain in drivetrain_list %}
+            <option value='{{drivetrain}}'>{{drivetrain}}</option>
+            {% endfor %}
+        </select><br><br>
+        <select name = 'material' class="form-select" aria-label="Default select example">
+            <option selected>소재를 선택해주세요.</option>
+            {% for material in material_list %}
+            <option value='{{material}}'>{{material}}</option>
+            {% endfor %}
+        </select>
+    </body>
+</html>
