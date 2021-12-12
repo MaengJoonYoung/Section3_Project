@@ -1,6 +1,6 @@
 import sqlite3
 import pickle
-
+import pandas as pd
 conn = sqlite3.connect('used_bicycle.db')
 cur = conn.cursor()
 
@@ -32,7 +32,16 @@ def add_data(data):
         except:
             pass
 
-# add_data('data_2.pkl')
+# 전처리 후 데이터베이스에 데이터 적재.
+def after_preprocessing(df):
+    df['price'] = df['price'].replace({',' : '', '원' : ''})
+    con = sqlite3.connect('used_bicycle.db')
+    df.to_sql('bicycle_pre', con, index=False)
 
+df = pd.read_csv('/Users/maengbook/Desktop/Project_3/bicycle.csv')
+# init_db()
+# add_data('data.pkl')
+# add_data('data_2.pkl')
+after_preprocessing(df)
 conn.commit()
 conn.close()
