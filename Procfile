@@ -1,1 +1,1 @@
-web: gunicorn Used_bicycle:__init__
+web: gunicorn Used_bicycle:app
