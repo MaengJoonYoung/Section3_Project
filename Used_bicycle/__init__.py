@@ -3,16 +3,17 @@ import pickle
 import pandas as pd
 import numpy as np
 
-df =pd.read_csv('/Users/maengbook/Desktop/Project_3/bicycle.csv')
+df =pd.read_csv('bicycle.csv')
 
 app = Flask(__name__)
 
 @app.route('/')
-def home():
+def index():
     brand_list = df['brand'].unique()
     drivetrain_list = df['drivetrain'].unique()
     material_list = df['material'].unique()
-    return render_template('home.html', brand_list= brand_list, drivetrain_list = drivetrain_list, material_list = material_list)
+
+    return render_template('index.html', brand_list= brand_list, drivetrain_list = drivetrain_list, material_list = material_list)
     
 @app.route('/predict/', methods=['GET','POST'])
 def predict():
@@ -23,15 +24,12 @@ def predict():
         brake = request.form.get('brake')
         drivetrain = request.form.get('drivetrain')
         material = request.form.get('material')
-        
+
+        model = None
+        with open('model_2.pkl', 'rb') as pickle_file:
+            model = pickle.load(pickle_file)
         pred_df = pd.DataFrame({'brand' : [brand], 'old': [old], 'brake' : [brake], 'drivetrain': [drivetrain], 'material': [material]})
             
-        predcit_price = int(model.predict(pred_df))
+        predcit_price = f'{int(model.predict(pred_df)):,}'
 
         return render_template('predict.html', predcit_price = predcit_price)
-
-if __name__ == '__main__':
-    model = None
-    with open('model_2.pkl', 'rb') as pickle_file:
-        model = pickle.load(pickle_file)
-    app.run()

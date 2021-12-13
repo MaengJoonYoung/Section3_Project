@@ -4,6 +4,6 @@ import pandas as pd
 from flask import request
 import datetime
 
-df =pd.read_csv('/Users/maengbook/Desktop/Project_3/bicycle.csv')
+df =pd.read_csv('bicycle.csv')
 
 print(df)

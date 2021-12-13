@@ -38,7 +38,7 @@ def after_preprocessing(df):
     con = sqlite3.connect('used_bicycle.db')
     df.to_sql('bicycle_pre', con, index=False)
 
-df = pd.read_csv('/Users/maengbook/Desktop/Project_3/bicycle.csv')
+df = pd.read_csv('bicycle.csv')
 # init_db()
 # add_data('data.pkl')
 # add_data('data_2.pkl')
