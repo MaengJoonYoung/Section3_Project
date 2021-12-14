@@ -7,11 +7,6 @@ import pickle
 from bs4 import BeautifulSoup
 import time
 
-# options = webdriver.ChromeOptions()
-# options.headless = True # headless Chrome 설정.
-# options.add_argument("windos-size=2560x1600")
-# options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36")
-
 driver = webdriver.Chrome('/Users/maengbook/Desktop/driver/chromedriver')
 driver.maximize_window()
 driver.implicitly_wait(10)
@@ -22,6 +17,7 @@ url = 'https://wrightbrothers.kr/shop/bicycles/bicycles/?filter=%5B%22categoryTy
 driver.get(url)
 home = driver.page_source
 
+# 사이트 내 총 상품개수
 soup_home = BeautifulSoup(home, 'html.parser')
 number = soup_home.find('div','search-count')
 last_number = int(number.h5.span.text)
