@@ -17,6 +17,7 @@ def init_db():
         material VARCHAR
     );""")
 
+# 부호화 한 데이터를 데이터베이스에 입력.
 def add_data(data):
 
     datas = None
@@ -32,12 +33,13 @@ def add_data(data):
         except:
             pass
 
-# 전처리 후 데이터베이스에 데이터 적재.
+# 전처리 후 bicycle_pre라는 테이블 이름으로 데이터베이스에 데이터 적재.
 def after_preprocessing(df):
     df['price'] = df['price'].replace({',' : '', '원' : ''})
     con = sqlite3.connect('used_bicycle.db')
     df.to_sql('bicycle_pre', con, index=False)
 
+# 코랩에서 전처리를 진행했던 csv 파일을 데이터베이스에 적재.
 df = pd.read_csv('bicycle.csv')
 # init_db()
 # add_data('data.pkl')
