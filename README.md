@@ -1,3 +1,51 @@
 # Section3_Project
 
-## *중고 자전거 가격을 예측하는 머신러닝 모델을 웹 서비스로 배포한 프로젝트.*
+중고 자전거 가격을 예측하는 머신러닝 모델 구축 후 웹 서비스로 배포.
+
+<br>
+
+<img width="904" alt="중고자전거" src="https://user-images.githubusercontent.com/89771322/161058686-e82726ac-2af3-4388-b0e4-d5522f0b5f81.png">
+
+<br>
+
+## 문제 정의 
+
+자전거를 구매하려고 할때 브랜드 종류, 소재, 구동계 등 고려해야할 것들이 많기 때문에 자전거를 처음 구매하는 사람들의 경우 굉장히 막막하다는 문제가 있다. 
+
+<br>
+
+자신이 원하는 스펙의 자전거를 입력하고 예측 가격을 확인하는 방식으로 자전거를 처음 구매하는 사람들에게 도움이 되고자 프로젝트를 계획.
+
+<br>
+
+## 파일
+
+- `scraping.py` : 동적 크롤러
+- `add.py` : DB에 데이터 적재
+- `model.py` : 모델 훈련
+- `model_2.pkl` : XGB Regressor 모델
+- `data_2.pkl, data,pkl` : dictionary 형태의 데이터
+- `Preprocessing&model_test.ipynb` : 전처리 및 모델 성능 비교
+
+<br>
+
+## 진행 과정
+
+1. selenium, SQLite 활용하여 동적 크롤링 후 DB에 데이터 적재.
+2. pandas, numpy, matplotlib 활용하여 EDA 및 전처리 진행.
+3. sklearn 활용하여 0.72의 R2 score를 가진 XGB Regressor 모델 구축.
+4. Metabase 활용하여 대시보드 제작.
+5. Flask로 웹 어플리케이션 제작 후 Heroku로 배포.
+
+<br>
+
+## 결과물
+[중고 자전거 가격 예측](https://usedbicycle.herokuapp.com/)
+
+<br>
+
+## 한계점
+
+1. 크롤러를 제작하고 데이터를 수집하는 시간이 오래 걸렸다.
+2. 1번의 문제로 데이터를 많이 수집하지 못하여 2000개 이하의 데이터로 모델 학습을 진행했다.
+3. 2번의 문제가 모델 성능에도 영향을 미쳤다고 생각.
