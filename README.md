@@ -18,7 +18,36 @@
 
 <br>
 
-## 파일
+## 폴더 & 파일 <br>
+
+### 트리구조 <br>
+
+
+```
+├── Preprocessing&model_test.ipynb
+├── Procfile
+├── README.md
+├── Used_bicycle
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-38.pyc
+│   │   └── scraping.cpython-38.pyc
+│   ├── add.py
+│   ├── model.py
+│   ├── scraping.py
+│   └── templates
+│       ├── cover.css
+│       ├── index.html
+│       └── predict.html
+├── bicycle.csv
+├── data.pkl
+├── data_2.pkl
+├── model_2.pkl
+├── requirements.txt
+└── used_bicycle.db
+```
+
+### 파일 설명 <br>
 
 - `scraping.py` : 동적 크롤러
 - `add.py` : DB에 데이터 적재
